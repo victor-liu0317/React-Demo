@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo02</title>
+	<script src="./build/react.js"></script>
+	<script src="./build/react-dom.js"></script>
+    <script src="./build/browser.min.js"></script>
+</head>
+<body>
+	<div id="example01"></div>
+	<div id="example02"></div>
+	<div id="example03"></div>
+	<div id="example04"></div>
+	<script type="text/babel">
+		//获取真实DOM
+		var MyComponent = React.createClass({
+			handleClick:function(){
+				this.refs.myTextInput.focus();
+			},
+			render:function(){
+				return (
+					<div>
+						<input type="text" ref="myTextInput"></input>
+						<input type="button" value="Focus the text input" onClick={this.handleClick}></input>
+					</div>
+				);
+			}
+		});
+		ReactDOM.render(
+			<MyComponent />,
+			document.getElementById('example01')
+		);
+
+		//将组件看成状态机
+		var LikeButton = React.createClass({
+			getInitialState:function(){
+				return {liked:false};
+			},
+			handleClick:function(event){
+				this.setState({liked: !this.state.liked});
+			},
+			render:function(){
+				var text = this.state.liked ? 'like' : 'haven\'t liked';
+				return (
+					<p onClick={this.handleClick}>
+						You {text} this. Click to toggle.
+					</p>
+				);
+			}
+		});
+		ReactDOM.render(
+			<LikeButton />,
+			document.getElementById('example02')
+		);
+
+		//表单
+		var Input = React.createClass({
+			getInitialState:function(){
+				return {value:'Hello!'};
+			},
+			handleChange:function(event){
+				this.setState({value: event.target.value});
+			},
+			render:function(){
+				var value = this.state.value;
+				return (
+					<div>
+						<input type="text" value={value} onChange={this.handleChange}></input>
+						<br/>
+						<p>{value}</p>
+					</div>
+				);
+			}
+		});
+		ReactDOM.render(
+			<Input />,
+			document.getElementById('example03')
+		);
+
+		//组件生命周期
+		var Hello = React.createClass({
+			getInitialState:function(){
+				return{
+					opacity:1.0
+				};
+			},
+			componentDidMount:function(){
+				this.timer = setInterval(function(){
+					var opacity = this.state.opacity;
+					opacity -= .05;
+					if(opacity < 0.1){
+						opacity = 1.0;
+					}
+					this.setState({
+						opacity: opacity
+					});
+				}.bind(this), 100);
+			},
+			render:function(){
+				return (
+					<div style={{opacity:this.state.opacity}}>
+						Hello {this.props.name}
+					</div>
+				);
+			}
+		});
+		ReactDOM.render(
+			<Hello name="victor" />,
+			document.getElementById('example04')
+		);
+	</script>
+</body>
+</html>

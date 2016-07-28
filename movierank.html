@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>MovieRank</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="./build/react.js"></script>
+	<script src="./build/react-dom.js"></script>
+    <script src="./build/browser.min.js"></script>
+</head>
+<body>
+	<div id="wrapper"></div>
+	<script type="text/babel">
+		var data = {
+			Skiptrace:['绝地逃亡','98.9','喜剧 剧情','雷尼·哈林','2016年07月21日','http://mu1.sinaimg.cn/frame.180x240/weiyinyue.music.sina.com.cn/movie_poster/177161_vertical.jpg'],
+			DaHai:['大鱼海棠','97.4','动画','梁旋 张春','2016年07月08日','http://mu1.sinaimg.cn/frame.180x240/weiyinyue.music.sina.com.cn/movie_poster/106020_vertical.jpg'],
+			Coldwar:['寒战2','96.5','动作 犯罪','梁乐民 陆剑青','2016年07月08日','http://mu1.sinaimg.cn/frame.180x240/weiyinyue.music.sina.com.cn/movie_poster/180306_vertical.jpg']
+		};
+
+		var MovieList = React.createClass({
+			render:function(){
+				return (
+					<div>
+						<MovieDetail name="Skiptrace" />
+						<MovieDetail name="DaHai" />
+						<MovieDetail name="Coldwar" />
+					</div>
+				)
+			}
+		});
+		var MovieDetail = React.createClass({
+			render:function(){
+				var name = this.props.name;
+				for(var d in data){
+					if(d == name){
+						var picturelink = data[d][5];
+						var name = data[d][0];
+						var hot = data[d][1];
+						var type = data[d][2];
+						var director = data[d][3];
+						var time = data[d][4];
+					}
+				}
+				return (
+					<div className="detail">
+						<img src={picturelink} />
+						<div className="detail-text">
+							<span className="text"><h1>片名：{name}</h1></span><br/>
+							<span className="text">热议度：{hot}</span><br/>
+							<span className="text">类型：{type}</span><br/>
+							<span className="text">导演：{director}</span><br/>
+							<span className="text">上映时间：{time}</span>
+						</div>
+					</div>
+				)
+			}
+		});
+
+		ReactDOM.render(<MovieList />, document.getElementById('wrapper'));
+	</script>
+</body>
+</html>

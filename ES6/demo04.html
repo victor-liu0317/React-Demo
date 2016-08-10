@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo04</title>
+	<script type="text/javascript" src="node_modules/babel-core/browser.min.js"></script>
+</head>
+<body>
+	<script type="text/babel">
+		//正则的扩展，ES6允许RegExp构造函数接受正则表达式作为参数
+		var regex = new RegExp(/xyz/i);
+		//添加u修饰符，y修饰符
+
+		//数值的扩展
+		//二进制与八进制新写法
+		0b111110111 === 503;
+		0o767 === 503;
+
+		Number.isFinite();
+		Number.isNaN();	//只对数值有效，对于非数值一律返回false
+
+		Number.parseInt();
+		Number.parseFloat();	//全局方法移植到Number对象上，行为完全保持不变
+		Number.isInteger();	//判断一个值是否为整数
+		Number.EPSILON;	//新常量，实质是一个可以接受的误差范围
+		Number.MAX_SAFE_INTEGER;
+		Number.MIN_SAFE_INTEGER;	//整数范围上下限
+		Number.isSafeInteger();	//判断是否是安全整数
+
+		//Math对象新增17个静态方法
+		Math.trunc();
+		Math.sign();
+		Math.cbrt();
+		Math.clz32();
+		Math.imul();
+		Math.fround();
+		Math.hypot();
+		......
+	</script>
+</body>
+</html>

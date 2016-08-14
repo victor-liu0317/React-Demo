@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo06</title>
+	<script type="text/javascript" src="node_modules/babel-core/browser.min.js"></script>
+</head>
+<body>
+	<script type="text/babel">
+		//函数的扩展
+		//ES6允许为函数的参数设置默认值，即直接写在参数定义的后面
+		function log(x, y='world'){
+			console.log(x, y);
+		}
+		log('Hello');
+		//与解构赋值默认值结合使用
+		function fetch(url, { method = 'GET' } = {}){
+			console.log(method);
+		}
+		fetch('www.baidu.com');
+
+		//指定了默认值以后，函数的length属性将返回没有指定默认值的参数个数
+
+		//作用域
+		let x = 1;
+		function f(y = x){
+			let x = 2;
+			console.log(y);
+		}
+		f();	//1
+
+		//ES6引入rest参数，用于获取函数的多余参数，只能是最后一个参数，函数的length属性不包括rest参数
+		function add(...values){
+			let sum = 0;
+			for (var val of values){
+				sum += val;
+			}
+			return sum;
+		}
+		console.log(add(2, 5, 3));	//10
+
+		//扩展运算符,好比rest参数的逆运算，讲一个数组转为用逗号分隔的参数序列
+		console.log(...[1, 2, 3]);	//1 2 3
+
+		function add(x, y){
+			return x + y;
+		}
+		var numbers = [4, 38];
+		console.log(add(...numbers));	//42
+		//扩展运算符的应用
+		//合并数组
+		//[...arr1, ...arr2, ...arr3]
+		//与解构赋值结合
+		const [first, ...rest] = [1, 2, 3, 4, 5];
+		console.log(first)	//1
+		console.log(rest)	//[2, 3, 4, 5]
+		//将字符串转为真正的数组
+		console.log([..."hello"]) 	//["h", "e", "l", "l", "o"]
+		//类似数组的对象
+		var nodelist = document.querySelectorAll('div');
+		var array = [...nodelist];
+
+		//函数的name属性返回该函数的函数名
+		var func1 = function(){};
+		console.log(func1.name) 	//"func1"
+
+		const bar = function baz(){};
+		console.log(bar.name);
+	</script>
+</body>
+</html>

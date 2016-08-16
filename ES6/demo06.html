@@ -66,6 +66,20 @@
 
 		const bar = function baz(){};
 		console.log(bar.name);
+		
+		//箭头函数
+		//ES6允许使用"箭头"定义函数
+		var f = v => v;	//var f = function(v){return v};
+		var f = () => 5;	//var f = function(){return 5};
+		var sum = (num1, num2) => num1 + num2;
+		//箭头函数可用于简化回调函数
+
+		//函数绑定，双冒号
+
+		//尾调用优化，某个函数的最后一步是调用另一个函数
+		function f(x){
+			return g(x);
+		}
 	</script>
 </body>
 </html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo07</title>
+	<script type="text/javascript" src="node_modules/babel-core/browser.min.js"></script>
+</head>
+<body>
+	<script type="text/babel">
+		//对象的扩展
+		//ES6允许直接写入变量和函数作为对象的属性和方法
+		var Person = {
+			name : '张三',
+
+			//等同于birth : birth
+			//birth,
+
+			//等同于hello : function()...
+			hello(){console.log('我的名字是', this.name);}
+		}
+		Person.hello();
+
+		//属性名表达式
+		var lastWord = 'last word';
+		var a = {
+			'first word':'hello',
+			[lastWord]:'world'
+		};
+		console.log(a['first word']);
+		console.log(a[lastWord]);
+		console.log(a['last word']);
+
+		//Object.is()用来比较两个值是否完全相等
+		Object.is('foo', 'foo');
+
+		//Object.assign()用来将源对象的所有可枚举属性复制到目标上
+		//Object.assign()只复制自身属性，不可枚举属性和继承的属性不会被复制
+		//可用来处理数组，但会将其视为对象
+		//用处：克隆对象
+		function clone(origin){
+			return Object.assign({}, origin);
+		}
+
+		//属性的遍历
+		//for...in 	Object.keys(obj)  Object.getOwnPropertyNames(obj)  Object.getOwnPropertySymbols(obj)
+		//Reflect.ownKeys(obj)  Reflect.enumerate(obj)
+
+		//Object.setPrototypeOf()  Object.getPrototypeOf()  Object.create()
+	</script>
+</body>
+</html>

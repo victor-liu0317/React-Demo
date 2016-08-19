@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo08</title>
+	<script type="text/javascript" src="node_modules/babel-core/browser.min.js"></script>
+</head>
+<body>
+	
+	<script type="text/babel">
+		//ES6引入新的原始数据类型Symbol，表示独一无二的值
+		var sym = Symbol('My symbol');
+
+		console.log(String(sym));
+		console.log(sym.toString());
+
+		//Symbol值可以作为标识符用于对象的属性名
+		var mySymbol = Symbol();
+
+		var a = {};
+		a[mySymbol] = 'hello';
+
+		let s = Symbol();
+		let obj = {
+			[s]: function(arg){console.log(arg);}
+		};
+		obj[s](123);
+
+		//Object.getOwnPropertySymbols方法返回一个数组，成员是当前对象的所有用作属性名的Symbol值
+
+		//重新使用同一个Symbol值，Symbol.for方法可以做到
+		var s1 = Symbol.for('foo');
+		var s2 = Symbol.for('foo');
+		console.log(s1 === s2);	//true
+		//Symbol.keyFor方法返回一个已登记的Symbol类型值的key
+	</script>
+</body>
+</html>

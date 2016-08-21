@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo09</title>
+	<script type="text/javascript" src="node_modules/babel-core/browser.min.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+		//Proxy
+		var obj = new Proxy({}, {
+			get : function(target, key, reciever){
+				console.log(`getting ${key}!`);
+				return Reflect.get(target, key, reciever);
+			},
+			set : function(target, key, value, reciever){
+				console.log(`setting ${key}!`);
+				return Reflect.set(target, key, value, reciever);
+			}
+		});
+
+		//Reflect
+
+		//二进制数组(ArrayBuffer对象、TypedArray视图、DataView视图)
+		//ArrayBuffer对象代表储存二进制数据的一段内存，它不能直接读写，只能通过视图操作
+		var buf = new ArrayBuffer(32);
+		var dataView = new DataView(buf);
+		console.log(dataView.getUint8(0));
+
+		var buffer = new ArrayBuffer(12);
+		var x1 = new Int32Array(buffer);
+		x1[0] = 1;
+		var x2 = new Uint8Array(buffer);
+		x2[0] = 2;
+		console.log(x1[0]);
+
+		//Int8Array、Uint8Array、Uint8ClampedArray、Int16Array、Uint16Array、Int32Array、
+		//Uint32array、Float32Array、Float64Array
+
+		//二进制数组应用
+		//AJAX、Canvas、WebSocket、Fetch API、File API
+
+	</script>
+</body>
+</html>

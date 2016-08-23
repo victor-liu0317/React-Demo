@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo10</title>
+	<script type="text/javascript" src="node_modules/babel-core/browser.min.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+		//Set,类似于数组，但成员值都是唯一的
+		var s = new Set();
+		[2,3,5,4,2,4,5,2].map(x => s.add(x));
+		for(i of s){console.log(i);}
+		//add()、delete()、has()、clear()
+		//去除数组重复元素
+		function dedupe(array){
+			return Array.from(new Set(array));
+		}
+
+		//遍历操作:keys()、values()、entires()、forEach()
+		//由于Set结构没有键名，只有键值，所以keys方法和values方法的行为完全一致
+
+		//WeakSet结构类似，成员只能是对象，弱引用
+
+		//Map，类似于对象，也是键值对的集合，但是键不限于字符串
+		var m = new Map();
+		var o = {p : "Hello"};
+		m.set(o, "content");
+		console.log(m.get(o));
+
+		//map.size
+		//set(key, value)
+		//get(key)
+		//has(key)
+		//delete(key)
+		//clear(key)
+
+		//遍历操作:keys()、values()、entires()、forEach()
+
+		//WeakMap只接受对象作为键名
+	</script>
+</body>
+</html>

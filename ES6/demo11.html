@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo11</title>
+	<script type="text/javascript" src="node_modules/babel-core/browser.min.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+		//Iterator
+		//任何数据结构，只要部署了Iterator接口，就可以完成遍历操作
+		//当使用for...of循环遍历某种数据结构时，该循环会自动去寻找Iterator接口
+		//for...of循环可适用范围：数组、Set、Map、类似数组对象(比如arguments对象、DOM NodeList对象)
+		const arr = ['red', 'green', 'blue'];
+		let iterator = arr[Symbol.iterator]();
+		for(let v of arr){
+			console.log(v);
+		}
+
+		//JS原有的for...in循环读取键名，for...of循环读取键值
+		var arr1 = ['a', 'b', 'c', 'd'];
+		for(let a in arr1){
+			console.log(a);
+		}
+		for(let a of arr1){
+			console.log(a);
+		}
+
+		//Set和Map结构原生具有Iterator接口，可以直接使用for...of循环
+		var es6 = new Map();
+		es6.set("edition", 6);
+		es6.set("committee", "TC39");
+		es6.set("standard", "ECMA-262");
+		for(var [name, value] of es6){
+			console.log(name + ": " + value);
+		}
+		//遍历顺序是按照各成员被添加进数据结构的顺序
+		//Set结构遍历时返回的是一个值，Map结构遍历时返回的是一个数组
+
+		//字符串
+		let str = "hello";
+		for(let s of str){
+			console.log(s);
+		}
+	</script>
+</body>
+</html>

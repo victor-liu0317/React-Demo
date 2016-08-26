@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo12</title>
+	<script type="text/javascript" src="node_modules/babel-core/browser.min.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+		//Generator函数是ES6提供的一种异步编程解决方案
+		function* helloWorldGenerator(){
+			yield 'hello';
+			yield 'world';
+			return 'ending';
+		}
+		var hw = helloWorldGenerator();
+		console.log(hw.next());
+		console.log(hw.next());
+		console.log(hw.next());
+		console.log(hw.next());
+		//等于为JS提供了手动的“惰性求值”的语法功能
+
+		//next方法可以带一个参数，该参数会被当做上一条yield语句的返回值
+
+		//for...of循环可以自动遍历Generator函数
+		function *foo(){
+			yield 1;
+			yield 2;
+			yield 3;
+			yield 4;
+			yield 5;
+			return 6;
+		}
+		for(let v of foo()){
+			console.log(v);
+		}
+
+		//Generator函数返回的遍历器对象都有一个throw方法，可以在函数体外抛出错误，然后在Generator函数体内捕获
+		//还有一个return方法，可以返回给定的值，并终结Generator函数的遍历
+
+		//yield*语句，用来在一个Generator函数中执行另一个Generator函数
+		function* baz(){
+			yield 'a';
+			yield 'b';
+		}
+		function* bar(){
+			yield 'x';
+			yield* baz();
+			yield 'y';
+		}
+		for(let v of bar()){
+			console.log(v);
+		}
+	</script>
+</body>
+</html>

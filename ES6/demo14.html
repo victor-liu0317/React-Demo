@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo14</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//异步编程
+		//JS对异步编程的实现就是回调函数
+		/*
+		fs.readFile('/etc/passwd', function(err, data){
+			if(err) throw err;
+			console.log(data);
+		});
+		*/
+		//Generator函数是协程在ES6中的实现，最大的特点就是可以交出函数的执行权
+		//整个Generator函数就是一个封装的异步任务
+		function* gen(x){
+			var y = yield x + 2;
+			return y;
+		}
+		var g = gen(1);
+		console.log(g.next());
+		console.log(g.next());
+
+		//ES7提供了async函数
+		var asyncReadFile = async function(){
+			var f1 = await readFile('/etc/fstab');
+			var f2 = await readFile('/etc/shells');
+			console.log(f1.toString());
+			console.log(f1.toString());
+		}
+	</script>
+</body>
+</html>

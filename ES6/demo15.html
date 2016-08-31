@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo15</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//类
+		class Point{
+			constructor(x, y){
+				this.x = x;
+				this.y = y;
+			}
+			toString(){
+				return '(' + this.x + ', ' + this.y + ')';
+			}
+		}
+		Point.prototype.constructor === Point;	//true
+
+		//类内部定义的所有方法都是不可枚举的
+		//constructor方法是类的默认方法，通过new命令生成对象实例时自动调用该方法
+		//类的所有实例共享一个原型对象
+		//class不存在变量提升
+		//Class之间可以通过extends关键字实现继承
+		class ColorPoint extends Point{
+			constructor(x, y, color){
+				super(x,y);
+				this.color = color;
+			}
+			toString(){
+				return this.color + '' + super.toString();
+			}
+		}
+
+		//取值函数、存值函数
+		class MyClass{
+			constructor(){
+				//...
+			}
+			get prop(){
+				return 'getter';
+			}
+			set prop(value){
+				console.log('setter: ' + value);
+			}
+		}
+
+		//静态方法
+		class Foo{
+			static classMethod(){
+				return 'hello';
+			}
+		}
+		Foo.classMethod();
+	</script>
+</body>
+</html>

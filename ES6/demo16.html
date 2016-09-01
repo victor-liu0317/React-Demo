@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo16</title>
+	<script type="text/javascript" src="node_modules/babel-core/browser.min.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+		//修饰器是一个表达式，用于修改类的行为
+		function testable(target){
+			target.isTestable = true;
+		}
+
+		@testable
+		class MyTestableClass{}
+
+		console.log(MyTestableClass.isTestable);
+
+		//修饰器函数可以接受3个参数，依次是目标函数、属性名和该属性的描述对象
+		//修饰器不仅可以修饰类，还可以修饰类的属性
+
+
+		//模块
+		let { stat, exists, readFile } = require('fs');
+		//整体加载fs模块，然后在使用时用到三个方法，运行时加载
+
+		import { stat, exists, readFile } from 'fs';
+		//从fs模块加载3个方法，其他方法不加载，编译时加载
+
+		//export命令用于规定模块的对外接口，import命令用于输入其他模块提供的功能
+		//模块的继承 export * from ...
+		//ES6模块加载机制与CommonJS模块完全不同，CommonJS输出的是一个值得拷贝，而ES6模块输出的是值的引用
+		//lib.js
+		export let counter = 3;
+		export function incCounter(){
+			counter++;
+		}
+
+		//main.js
+		import { counter, incCounter } from './lib';
+		console.log(counter);	//3
+		incCounter();
+		console.log(counter);	//4
+	</script>
+</body>
+</html>
